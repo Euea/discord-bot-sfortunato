@@ -16,7 +16,7 @@ bot.on("message", async message => {
 
   if (cmd === `${prefix}numero`){
     let estratto = Math.floor(Math.random() * 90) + 1;
-    switch(n) {
+    switch(estratto) {
       case 1,2,3,4,5,6,7,8,9:
         message.channel.send(`http://euea.altervista.org/n/0${estratto}.jpg`);
         break;
