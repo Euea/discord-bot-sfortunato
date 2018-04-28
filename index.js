@@ -15,15 +15,14 @@ bot.on("message", async message => {
   let args = messageArray.slice(1);
 
   if (cmd === `${prefix}numero`){
+    let smorfia = ["Saab", "Volvo", "BMW"];
     let estratto = Math.floor(Math.random() * 90) + 1;
-    switch(estratto) {
-      case 1,2,3,4,5,6,7,8,9:
+    if(estratto < 11) {
         message.channel.send(`http://euea.altervista.org/n/0${estratto}.jpg`);
-        break;
-      default:
+    }
+    else {
         message.channel.send(`http://euea.altervista.org/n/${estratto}.jpg`);
     }
-    message.channel.send(estratto);
   }
 });
 
