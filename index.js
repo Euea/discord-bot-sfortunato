@@ -101,4 +101,4 @@ bot.on('message', (message) => {
         message.channel.send('Partecipa alle estrazioni a premio, manda un PM con il tuo numero ad @Euea ogni giorno.');
     }
 })
-bot.login('BOT_TOKEN');
+bot.login('process.env.BOT_TOKEN');
