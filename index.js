@@ -106,8 +106,8 @@ bot.on("message", async message => {
         else if(estratto == 88) { estratto = estratto + "! 'E CASECAVALLE http://euea.altervista.org/n/" + estratto + ".jpg"; }
         else if(estratto == 89) { estratto = estratto + "! 'A VECCHIA http://euea.altervista.org/n/" + estratto + ".jpg"; }
         else if(estratto == 90) { estratto = estratto + "! 'A PAURA http://euea.altervista.org/n/" + estratto + ".jpg"; }
-        message.channel.send(author_name + ' estrae un numero da 1 a 90... ' + estratto);
-        message.channel.send('Partecipa alle estrazioni a premio, manda un PM con il tuo numero ad @Euea ogni giorno.');
+        message.channel.send(author_name + " estrae un numero da 1 a 90... " + estratto);
+        message.channel.send("Partecipa alle estrazioni a premio, manda un PM con il tuo numero ad @Euea ogni giorno.");
   }
 });
 
