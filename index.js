@@ -18,15 +18,12 @@ bot.on("message", async message => {
     var estratto = Math.floor(Math.random() * 90) + 1;
     switch(n) {
       case 1,2,3,4,5,6,7,8,9:
-        estratto = "0" + estratto + "! http://euea.altervista.org/n/0" + estratto + ".jpg";
-        break;
-      case 10:
-        estratto = "0" + estratto + "! http://euea.altervista.org/n/10.jpg";
+        message.channel.send("http://euea.altervista.org/n/0" + estratto + ".jpg");
         break;
       default:
-        cestratto = estratto + "! 'http://euea.altervista.org/n/" + estratto + ".jpg";
+        message.channel.send("http://euea.altervista.org/n/" + estratto + ".jpg");
     }
-    message.channel.send("Pong2!" + estratto);
+    message.channel.send(estratto);
   }
 });
 
