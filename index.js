@@ -77,6 +77,7 @@ bot.on("message", async message => {
           message.channel.send(`${message.author.toString()} i tuoi numeri estratti: ${upnumeri}.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
         }
       return;
+      });
     }
     
     else if(chan == `games` && text == `.tombola fine`) {
