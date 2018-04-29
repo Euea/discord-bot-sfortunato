@@ -7,7 +7,6 @@ const bot = new Discord.Client({disableEveryone: true});
 const admin = process.env.admin;
 
 bot.on("ready", async () => {
-  db.run(`CREATE TABLE IF NOT EXISTS tombola (gestore TEXT, mancanti TEXT, estratti TEXT)`);
   bot.user.setActivity(`niende`);
   console.log(`Bot online!`);
 });
@@ -63,9 +62,9 @@ bot.on("message", async message => {
     }
     
     else if((chan == `games` || chan == `spam-musica`) && text == `.tombola`) {
-      db.run(`CREATE TABLE IF NOT EXISTS tombola (managerid TEXT, numbers TEXT)`);
       bot.user.setActivity(`tombola`);
-      db.get(`SELECT * FROM tombola WHERE managerid ="${message.author.toString()}" LIMIT 1`).then(row => {
+      db.run(`CREATE TABLE IF NOT EXISTS tombola (gestore TEXT, mancanti TEXT, estratti TEXT)`);
+      db.get(`SELECT * FROM tombola WHERE gestore ="${message.author.toString()}" LIMIT 1`).then(row => {
         if(!row) {
           var resetnumb = `01`;
           var i;
@@ -78,11 +77,11 @@ bot.on("message", async message => {
             }
             resetnumb = `${resetnumb}, ${numero}`;
           }
-          db.run(`INSERT INTO tombola (managerid, numbers) VALUES (?, ?)`, [message.author.toString(), resetnumb]);
+          db.run(`INSERT INTO tombola (gestore, numbers) VALUES (?, ?)`, [message.author.toString(), resetnumb]);
           message.channel.send(`${message.author.toString()} ha avviato una nuova partita di tombola.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
         }
         else {
-          message.channel.send(`${message.author.toString()} hai già avviato una partita di tombola.\nNumeri estratti: ${row.mancanti}.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
+          message.channel.send(`${message.author.toString()} hai già avviato una partita di tombola.\nNumeri estratti: ${row.estratti}.\nNumeri mancanti: ${row.mancanti}.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
         }
         return;
       });
