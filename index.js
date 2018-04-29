@@ -91,9 +91,11 @@ bot.on("message", async message => {
     }
     
     else if((chan == `games` || chan == `spam-musica`) && text == `.tombola numero`) {
+      bot.user.setActivity(`tombola`);
+      db.run(`CREATE TABLE IF NOT EXISTS tombola (gestore TEXT, mancanti TEXT, estratti TEXT)`);
       db.get(`SELECT * FROM tombola WHERE gestore ="${message.author.toString()}" LIMIT 1`).then(row => {
         if(!row) {
-          message.channel.send(`Errore, per favore contatta l'amministratore del bot.`);
+          message.channel.send(`Devi prima avviare una partita per poter estrarre un numero. Scrivi ".tombola" per iniziare.`);
         }
         else {
           var dbestratti = `${row.estratti}`;
@@ -124,7 +126,6 @@ bot.on("message", async message => {
       });
     }
     
-    // Continuo qui
     else if((chan == `games` || chan == `spam-musica`) && text == `.tombola fine`) {
       message.channel.send(`${message.author.toString()} ha terminato la partita di tombola.\nScrivi ".tombola" per iniziare una nuova partita.`);
       db.run(`DELETE FROM tombola WHERE gestore = "${message.author.toString()}" LIMIT 1`);
