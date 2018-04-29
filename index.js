@@ -94,8 +94,8 @@ bot.on("message", async message => {
           message.channel.send(`Errore, per favore contatta l'amministratore del bot.`);
         }
         else {
-          var dbestratti = ${row.estratti};
-          var dbmancanti = ${row.mancanti};
+          var dbestratti = `${row.estratti}`;
+          var dbmancanti = `${row.mancanti}`;
           
           var arraymancanti = dbmancanti.split(", ");
           var estratto = arraymancanti[Math.floor(Math.random() * arraymancanti.length)];
