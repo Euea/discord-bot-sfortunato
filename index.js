@@ -7,6 +7,8 @@ const bot = new Discord.Client({disableEveryone: true});
 const admin = process.env.admin;
 
 bot.on("ready", async () => {
+  db.run("DROP TABLE IF EXISTS tombola");
+  db.run(`CREATE TABLE IF NOT EXISTS tombola (gestore TEXT, mancanti TEXT, estratti TEXT)`);
   bot.user.setActivity(`niende`);
   console.log(`Bot online!`);
 });
@@ -98,6 +100,7 @@ bot.on("message", async message => {
           var dbmancanti = `${row.mancanti}`;
           
           var arraymancanti = dbmancanti.split(", ");
+          message.channel.send(`${arraymancanti.length}`);
           var estratto = arraymancanti[Math.floor(Math.random() * arraymancanti.length)];
           
           if(dbestratti === `0`){
@@ -123,12 +126,6 @@ bot.on("message", async message => {
       return;
     }
     
-    else if(authorid == admin && (chan == `games` || chan == `spam-musica`) && text == `.resetdb`) {
-      db.run("DROP TABLE IF EXISTS tombola");
-      db.run(`CREATE TABLE IF NOT EXISTS tombola (gestore TEXT, mancanti TEXT, estratti TEXT)`);
-      message.channel.send(`Database resettato.`);
-      return;
-    }
   }
 });
 
