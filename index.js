@@ -43,7 +43,7 @@ bot.on("message", async message => {
     if((chan == `games` || chan == `spam-musica`) && text == `.roulette`) {
       bot.user.setActivity(`roulette`);
       var estratto = Math.floor(Math.random() * 37);
-      message.channel.send(`${message.author.toString()} fa un tiro alla roulette: http://euea.altervista.org/roulette/v1/${numero}.png`);
+      message.channel.send(`${message.author.toString()} fa un tiro alla roulette: http://euea.altervista.org/roulette/v1/${estratto}.png`);
       return;
     }
     
