@@ -27,7 +27,7 @@ bot.on("message", async message => {
 
     
     // MONETA - Testa o croce
-    else if((chan == `games` || chan == `spam-musica`) && text == `.moneta`) {
+    if((chan == `games` || chan == `spam-musica`) && text == `.moneta`) {
       bot.user.setActivity(`testa o croce`);
       var estratto = Math.floor(Math.random() * 2);
       if(estratto < 1) {
@@ -57,7 +57,7 @@ bot.on("message", async message => {
     }
     
     // LOTTO - Numero casuale da 1 a 90
-    if((chan == `games` || chan == `spam-musica`) && text == `.lotto`) {
+    else if((chan == `games` || chan == `spam-musica`) && text == `.lotto`) {
       bot.user.setActivity(`lotto`);
       var estratto = Math.floor(Math.random() * 90) + 1;
       console.log(`${estratto}`);
