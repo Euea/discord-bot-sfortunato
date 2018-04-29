@@ -110,7 +110,7 @@ bot.on("message", async message => {
           
           db.run(`UPDATE tombola SET mancanti = "${upmancanti}", estratti = "${upestratti}" WHERE gestore = "${message.author.toString()}"`);
           
-          message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${numero}.png\nTutti i numeri estratti: ${upestratti}.\nScrivi ".tombola numero" per estrarre un altro numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
+          message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${estratto}.png\nTutti i numeri estratti: ${upestratti}.\nScrivi ".tombola numero" per estrarre un altro numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
         }
         return;
       });
