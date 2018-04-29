@@ -1,8 +1,8 @@
 const Discord = require("discord.js")
-const fs = require("fs");
-const dbfile = "./database.sqlite";
-const db = require("sqlite");
-db.open(dbfile);
+//const fs = require("fs");
+//const dbfile = "./database.sqlite";
+//const db = require("sqlite");
+//db.open(dbfile);
 const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("ready", async () => {
