@@ -25,6 +25,37 @@ bot.on("message", async message => {
     var chan = message.channel.name.toLowerCase();
     var authorid = message.author.id;
 
+    
+    // MONETA - Testa o croce
+    else if((chan == `games` || chan == `spam-musica`) && text == `.moneta`) {
+      bot.user.setActivity(`testa o croce`);
+      var estratto = Math.floor(Math.random() * 2);
+      if(estratto < 1) {
+        estratto = `croce`;
+      }
+      else {
+        estratto = `testa`;
+      }
+      message.channel.send(`${message.author.toString()} lancia una moneta: http://euea.altervista.org/moneta/v1/${estratto}.png`);
+      return;
+    }
+    
+    // DADO - Numero casuale da 1 a 6
+    else if((chan == `games` || chan == `spam-musica`) && text == `.dado`) {
+      bot.user.setActivity(`dadi`);
+      var estratto = Math.floor(Math.random() * 6) + 1;
+      message.channel.send(`${message.author.toString()} tira un dado: http://euea.altervista.org/dado/v1/${estratto}.png`);
+      return;
+    }
+    
+    // ROULETTE - Numero casuale da 0 a 36
+    else if((chan == `games` || chan == `spam-musica`) && text == `.roulette`) {
+      bot.user.setActivity(`roulette`);
+      var estratto = Math.floor(Math.random() * 37);
+      message.channel.send(`${message.author.toString()} fa un tiro alla roulette: http://euea.altervista.org/roulette/v1/${estratto}.png`);
+      return;
+    }
+    
     // LOTTO - Numero casuale da 1 a 90
     if((chan == `games` || chan == `spam-musica`) && text == `.lotto`) {
       bot.user.setActivity(`lotto`);
@@ -41,28 +72,7 @@ bot.on("message", async message => {
       return;
     }
     
-    // ROULETTE - Numero casuale da 0 a 36
-    else if((chan == `games` || chan == `spam-musica`) && text == `.roulette`) {
-      bot.user.setActivity(`roulette`);
-      var estratto = Math.floor(Math.random() * 37);
-      message.channel.send(`${message.author.toString()} fa un tiro alla roulette: http://euea.altervista.org/roulette/v1/${estratto}.png`);
-      return;
-    }
-    
-    // MONETA - Testa o croce
-    else if((chan == `games` || chan == `spam-musica`) && text == `.moneta`) {
-      bot.user.setActivity(`testa o croce`);
-      var estratto = Math.floor(Math.random() * 2);
-      if(estratto < 1) {
-        estratto = `croce`;
-      }
-      else {
-        estratto = `testa`;
-      }
-      message.channel.send(`${message.author.toString()} lancia una moneta: http://euea.altervista.org/moneta/v1/${estratto}.png`);
-      return;
-    }
-    
+    // TOMBOLA
     else if((chan == `games` || chan == `spam-musica`) && text == `.tombola`) {
       bot.user.setActivity(`tombola`);
       db.run(`CREATE TABLE IF NOT EXISTS tombola (gestore TEXT, mancanti TEXT, estratti TEXT)`);
@@ -70,7 +80,7 @@ bot.on("message", async message => {
         if(!row) {
           var mancanti = `01`;
           var i;
-          for (i = 2; i < 11; i++) { 
+          for (i = 2; i < 91; i++) { 
             if(i < 10) {
               numero = `0${i}`;
             }
@@ -90,17 +100,17 @@ bot.on("message", async message => {
       });
     }
     
+    // TOMBOLA NUMERO
     else if((chan == `games` || chan == `spam-musica`) && text == `.tombola numero`) {
       db.get(`SELECT * FROM tombola WHERE gestore ="${message.author.toString()}" LIMIT 1`).then(row => {
         if(!row) {
-          message.channel.send(`Errore, per favore contatta l'amministratore del bot.`);
+          message.channel.send(`Non hai attivato alcuna partita. Scrivi ".tombola" per iniziare una nuova partita.`);
         }
         else {
           var dbestratti = `${row.estratti}`;
           var dbmancanti = `${row.mancanti}`;
           
           var arraymancanti = dbmancanti.split(", ");
-          message.channel.send(`${arraymancanti.length}`);
           var estratto = arraymancanti[Math.floor(Math.random() * arraymancanti.length)];
           
           if(dbestratti === `0`){
@@ -125,9 +135,10 @@ bot.on("message", async message => {
       });
     }
     
-    // Continuo qui
+    // TOMBOLA FINE
     else if((chan == `games` || chan == `spam-musica`) && text == `.tombola fine`) {
-      message.channel.send(`${message.author.toString()} ha terminato la partita di tombola. Numeri estratti: . Scrivi ".tombola" per iniziare una nuova partita.`);
+      message.channel.send(`${message.author.toString()} ha terminato la partita di tombola. Scrivi ".tombola" per iniziare una nuova partita.`);
+      db.run(`DELETE FROM tombola WHERE gestore = "${message.author.toString()}"`);
       return;
     }
     
