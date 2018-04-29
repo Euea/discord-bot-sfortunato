@@ -77,11 +77,12 @@ bot.on("message", async message => {
             }
             mancanti = `${mancanti}, ${numero}`;
           }
-          db.run(`INSERT INTO tombola (gestore, estratti, mancanti) VALUES (?, ?, ?)`, [message.author.toString(), `0`, `${mancanti}`]);
+          var estratti = `0`;
+          db.run(`INSERT INTO tombola (gestore, estratti, mancanti) VALUES (?, ?, ?)`, [message.author.toString(), `${estratti}`, `${mancanti}`]);
           message.channel.send(`${message.author.toString()} ha avviato una nuova partita di tombola.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
         }
         else {
-          message.channel.send(`${message.author.toString()} hai già avviato una partita di tombola.\nNumeri estratti: ${row.estratti}.\nNumeri mancanti: ${row.mancanti}.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
+          message.channel.send(`${message.author.toString()} hai già avviato una partita di tombola.\nNumeri estratti: ${row.estratti}.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
         }
         return;
       });
@@ -99,7 +100,12 @@ bot.on("message", async message => {
           var arraymancanti = dbmancanti.split(", ");
           var estratto = arraymancanti[Math.floor(Math.random() * arraymancanti.length)];
           
-          var upestratti = `${dbestratti}, ${estratto}`;
+          if(dbestratti === `0`){
+            var upestratti = `${estratto}`;
+          }
+          else {
+            var upestratti = `${dbestratti}, ${estratto}`;
+          }
           var upmancanti = dbmancanti.replace(`, ${estratto}`, ``);
           
           db.run(`UPDATE tombola SET mancanti = "${upmancanti}", estratti = "${upestratti}" WHERE gestore = "${message.author.toString()}"`);
