@@ -67,7 +67,7 @@ bot.on("message", async message => {
           message.channel.send(`Errore, per favore contatta l'amministratore del bot.`);
         }
         else {
-          if(${row.numbers} == "0") {
+          if(`${row.numbers}` == "0") {
             upnumeri = `${numero}`;
           }
           else {
