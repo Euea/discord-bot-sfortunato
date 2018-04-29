@@ -35,6 +35,7 @@ bot.on("message", async message => {
     }
     
     else if(chan == `games` && text == `.tombola`) {
+      db.run(`CREATE TABLE IF NOT EXISTS tombola (managerid TEXT, numbers TEXT)`);
       bot.user.setActivity(`tombola`);
       message.channel.send(`Tombola`);
 
