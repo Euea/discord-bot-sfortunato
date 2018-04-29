@@ -107,6 +107,7 @@ bot.on("message", async message => {
             var upestratti = `${dbestratti}, ${estratto}`;
           }
           var upmancanti = dbmancanti.replace(`, ${estratto}`, ``);
+          var upmancanti = upmancanti.replace(`${estratto}, `, ``);
           
           db.run(`UPDATE tombola SET mancanti = "${upmancanti}", estratti = "${upestratti}" WHERE gestore = "${message.author.toString()}"`);
           
