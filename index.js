@@ -68,7 +68,7 @@ bot.on("message", async message => {
         if(!row) {
           var mancanti = `01`;
           var i;
-          for (i = 2; i < 91; i++) { 
+          for (i = 2; i < 11; i++) { 
             if(i < 10) {
               numero = `0${i}`;
             }
