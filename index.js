@@ -77,7 +77,7 @@ bot.on("message", async message => {
             }
             mancanti = `${mancanti}, ${numero}`;
           }
-          db.run(`INSERT INTO tombola (gestore, estratti, mancanti) VALUES (?, ?, ?)`, [message.author.toString(), ``, `${mancanti}`]);
+          db.run(`INSERT INTO tombola (gestore, estratti, mancanti) VALUES (?, ?, ?)`, [message.author.toString(), `0`, `${mancanti}`]);
           message.channel.send(`${message.author.toString()} ha avviato una nuova partita di tombola.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
         }
         else {
