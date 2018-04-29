@@ -35,7 +35,7 @@ bot.on("message", async message => {
       else {
         numero = `${estratto}`;
       }
-      message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/numero/v1/${numero}.png`);
+      message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${numero}.png`);
       return;
     }
     
