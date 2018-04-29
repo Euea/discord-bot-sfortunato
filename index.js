@@ -1,5 +1,7 @@
 const Discord = require("discord.js")
 const fs = require("fs");
+const mysql = require('mysql');
+
 const dbfile = "./database.sqlite";
 const db = require("sqlite");
 db.open(dbfile);
