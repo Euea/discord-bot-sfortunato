@@ -4,6 +4,7 @@ const dbfile = "./database.sqlite";
 const db = require("sqlite");
 db.open(dbfile);
 const bot = new Discord.Client({disableEveryone: true});
+const admin = process.env.admin;
 
 bot.on("ready", async () => {
   db.run(`CREATE TABLE IF NOT EXISTS tombola (managerid TEXT, numbers TEXT)`);
