@@ -6,8 +6,9 @@ db.open(dbfile);
 const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("ready", async () => {
-  console.log(`Bot online!`);
+  db.run(`CREATE TABLE IF NOT EXISTS tombola (gameid TEXT, managerid TEXT, numbers TEXT)`);
   bot.user.setActivity(`niende`);
+  console.log(`Bot online!`);
 });
 
 bot.on("message", async message => {
@@ -18,21 +19,23 @@ bot.on("message", async message => {
     return;
   }
   else {
-    let prefix = '.';
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
+    var text = message.content.toLowerCase();
+    var chan = message.channel.name.toLowerCase();
 
-  
-    if(message.channel.name == "games" && cmd === `${prefix}numero`) {
-      let smorfia = ["Saab", "Volvo", "BMW"];
-      let estratto = Math.floor(Math.random() * 90) + 1;
+    if(chan == `games` && text == `.numero`) {
+      bot.user.setActivity(`dare i numeri`);
+      var estratto = Math.floor(Math.random() * 90) + 1;
       if(estratto < 10) {
           message.channel.send(`${message.author.toString()} estrae: http://euea.altervista.org/numero/v1/0${estratto}.png`);
       }
       else {
           message.channel.send(`${message.author.toString()} estrae: http://euea.altervista.org/numero/v1/${estratto}.png`);
       }
+    }
+    
+    else if(chan == `games` && text == `.tombola`) {
+          bot.user.setActivity(`tombola`);
+          message.channel.send(`Tombola`);
     }
   }
 });
