@@ -19,6 +19,6 @@
     "opusscript": "0.0.3",
     "sqlite": "^2.8.0",
     "uws": "^8.14.0",
-    "node-mysql"
+    "mysql"
   }
 }
