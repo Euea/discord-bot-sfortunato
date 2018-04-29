@@ -7,7 +7,7 @@ const bot = new Discord.Client({disableEveryone: true});
 const admin = process.env.admin;
 
 bot.on("ready", async () => {
-  db.run(`CREATE TABLE IF NOT EXISTS tombola (managerid TEXT, numbers TEXT)`);
+  db.run(`CREATE TABLE IF NOT EXISTS tombola (gestore TEXT, mancanti TEXT, estratti TEXT)`);
   bot.user.setActivity(`niende`);
   console.log(`Bot online!`);
 });
