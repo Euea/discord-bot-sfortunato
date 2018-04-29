@@ -46,11 +46,11 @@ bot.on("message", async message => {
           message.channel.send(`Esiste già.`);
         }
       });
-      
-      else if(chan == `games` && text == `.resetdb`) {
-        db.run("DROP TABLE IF EXISTS users");
-        message.channel.send(`Database resettato.`);
-      }
+    }
+    
+    else if(chan == `games` && text == `.resetdb`) {
+      db.run("DROP TABLE IF EXISTS users");
+      message.channel.send(`Database resettato.`);
     }
   }
 });
