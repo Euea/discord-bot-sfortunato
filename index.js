@@ -40,10 +40,24 @@ bot.on("message", async message => {
     }
     
     // ROULETTE - Numero casuale da 0 a 36
-    if((chan == `games` || chan == `spam-musica`) && text == `.roulette`) {
+    else if((chan == `games` || chan == `spam-musica`) && text == `.roulette`) {
       bot.user.setActivity(`roulette`);
       var estratto = Math.floor(Math.random() * 37);
       message.channel.send(`${message.author.toString()} fa un tiro alla roulette: http://euea.altervista.org/roulette/v1/${estratto}.png`);
+      return;
+    }
+    
+    // MONETA - Testa o croce
+    else if((chan == `games` || chan == `spam-musica`) && text == `.roulette`) {
+      bot.user.setActivity(`testa o croce
+      var estratto = Math.floor(Math.random() * 1);
+      if(estratto < 1) {
+        estratto = `croce`;
+      }
+      else {
+        estratto = `testa`;
+      }
+      message.channel.send(`${message.author.toString()} lancia una moneta: http://euea.altervista.org/moneta/v1/${estratto}.png`);
       return;
     }
     
