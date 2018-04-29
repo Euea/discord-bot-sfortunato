@@ -112,14 +112,14 @@ bot.on("message", async message => {
           var upmancanti = dbmancanti.replace(`, ${estratto}`, ``);
           var upmancanti = upmancanti.replace(`${estratto}, `, ``);
           
-          if(arraymancanti.length < 2) {
-            message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${estratto}.png\nTutti i numeri sono stati estratti, la partita è finita.\nScrivi ".tombola" per iniziare una nuova partita.`);
-            db.run(`DELETE FROM tombola WHERE gestore = "${message.author.toString()}" LIMIT 1`);
-          }
-          else {
+          //if(arraymancanti.length < 2) {
+          //  message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${estratto}.png\nTutti i numeri sono stati estratti, la partita è finita.\nScrivi ".tombola" per iniziare una nuova partita.`);
+          //  db.run(`DELETE FROM tombola WHERE gestore = "${message.author.toString()}" LIMIT 1`);
+          //}
+          //else {
             db.run(`UPDATE tombola SET mancanti = "${upmancanti}", estratti = "${upestratti}" WHERE gestore = "${message.author.toString()}" LIMIT 1`);
             message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${estratto}.png\nTutti i numeri estratti: ${upestratti}.\nScrivi ".tombola numero" per estrarre un altro numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
-          }
+          //}
         }
         return;
       });
