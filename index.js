@@ -48,7 +48,7 @@ bot.on("message", async message => {
     }
     
     // MONETA - Testa o croce
-    else if((chan == `games` || chan == `spam-musica`) && text == `.roulette`) {
+    else if((chan == `games` || chan == `spam-musica`) && text == `.moneta`) {
       bot.user.setActivity(`testa o croce`);
       var estratto = Math.floor(Math.random() * 1);
       if(estratto < 1) {
