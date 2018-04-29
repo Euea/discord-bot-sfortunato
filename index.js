@@ -18,10 +18,10 @@ bot.on("message", async message => {
     let smorfia = ["Saab", "Volvo", "BMW"];
     let estratto = Math.floor(Math.random() * 90) + 1;
     if(estratto < 11) {
-        message.channel.send(author_name + ` estrae: http://euea.altervista.org/numero/v1/0${estratto}.png`);
+        message.channel.send(`${message.author.toString()} estrae: http://euea.altervista.org/numero/v1/0${estratto}.png`);
     }
     else {
-        message.channel.send(author_name + ` estrae: http://euea.altervista.org/numero/v1/${estratto}.png`);
+        message.channel.send(`${message.author.toString()} estrae: http://euea.altervista.org/numero/v1/${estratto}.png`);
     }
   }
 });
