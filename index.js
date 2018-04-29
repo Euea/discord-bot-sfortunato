@@ -52,6 +52,7 @@ bot.on("message", async message => {
     
     else if(chan == `games` && text == `.resetdb`) {
       db.run("DROP TABLE IF EXISTS tombola");
+      db.run(`CREATE TABLE tombola (managerid TEXT, numbers TEXT)`);
       message.channel.send(`Database resettato.`);
     }
   }
