@@ -49,7 +49,7 @@ bot.on("message", async message => {
     }
     
     else if(chan == `games` && text == `.resetdb`) {
-      db.run("DROP TABLE IF EXISTS users");
+      db.run("DROP TABLE IF EXISTS tombola");
       message.channel.send(`Database resettato.`);
     }
   }
