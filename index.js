@@ -24,19 +24,30 @@ bot.on("message", async message => {
     var chan = message.channel.name.toLowerCase();
     var authorid = message.author.id;
 
-    if(chan == `games` && text == `.numero`) {
-      bot.user.setActivity(`dare i numeri`);
+    // LOTTO - Numero casuale da 1 a 90
+    if((chan == `games` || chan == `spam-musica`) && text == `.lotto`) {
+      bot.user.setActivity(`lotto`);
       var estratto = Math.floor(Math.random() * 90) + 1;
+      var numero = ``;
       if(estratto < 10) {
-        message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/numero/v1/0${estratto}.png`);
+        numero = `0${estratto}`;
       }
       else {
-        message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/numero/v1/${estratto}.png`);
+        numero = `${estratto}`;
       }
+      message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/numero/v1/${numero}.png`);
       return;
     }
     
-    else if(chan == `games` && text == `.tombola`) {
+    // ROULETTE - Numero casuale da 0 a 36
+    if((chan == `games` || chan == `spam-musica`) && text == `.roulette`) {
+      bot.user.setActivity(`roulette`);
+      var estratto = Math.floor(Math.random() * 37);
+      message.channel.send(`${message.author.toString()} fa un tiro alla roulette: http://euea.altervista.org/roulette/v1/${numero}.png`);
+      return;
+    }
+    
+    else if((chan == `games` || chan == `spam-musica`) && text == `.tombola`) {
       db.run(`CREATE TABLE IF NOT EXISTS tombola (managerid TEXT, numbers TEXT)`);
       bot.user.setActivity(`tombola`);
       db.get(`SELECT * FROM tombola WHERE managerid ="${message.author.toString()}" LIMIT 1`).then(row => {
@@ -51,7 +62,7 @@ bot.on("message", async message => {
       });
     }
     
-    else if(chan == `games` && text == `.tombola numero`) {
+    else if((chan == `games` || chan == `spam-musica`) && text == `.tombola numero`) {
       var estratto = Math.floor(Math.random() * 90) + 1;
       var numero = ``;
       var upnumeri = ``;
@@ -61,7 +72,7 @@ bot.on("message", async message => {
       else {
         numero = `${estratto}`;
       }
-      message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/numero/v1/${estratto}.png`);
+      message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/numero/v1/${numero}.png`);
       db.get(`SELECT * FROM tombola WHERE managerid ="${message.author.toString()}" LIMIT 1`).then(row => {
         if(!row) {
           message.channel.send(`Errore, per favore contatta l'amministratore del bot.`);
@@ -80,12 +91,12 @@ bot.on("message", async message => {
       });
     }
     
-    else if(chan == `games` && text == `.tombola fine`) {
+    else if((chan == `games` || chan == `spam-musica`) && text == `.tombola fine`) {
       message.channel.send(`${message.author.toString()} ha terminato la partita di tombola. Numeri estratti: . Scrivi ".tombola" per iniziare una nuova partita.`);
       return;
     }
     
-    else if(authorid == admin && chan == `games` && text == `.resetdb`) {
+    else if(authorid == admin && (chan == `games` || chan == `spam-musica`) && text == `.resetdb`) {
       db.run("DROP TABLE IF EXISTS tombola");
       db.run(`CREATE TABLE IF NOT EXISTS tombola (managerid TEXT, numbers TEXT)`);
       message.channel.send(`Database resettato.`);
