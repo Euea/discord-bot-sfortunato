@@ -28,6 +28,7 @@ bot.on("message", async message => {
     if((chan == `games` || chan == `spam-musica`) && text == `.lotto`) {
       bot.user.setActivity(`lotto`);
       var estratto = Math.floor(Math.random() * 90) + 1;
+      console.log(`${estratto}`);
       var numero = ``;
       if(estratto < 10) {
         numero = `0${estratto}`;
