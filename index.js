@@ -104,7 +104,7 @@ bot.on("message", async message => {
     else if((chan == `games` || chan == `spam-musica`) && text == `.tombola numero`) {
       db.get(`SELECT * FROM tombola WHERE gestore ="${message.author.toString()}" LIMIT 1`).then(row => {
         if(!row) {
-          message.channel.send(`Non hai attivato alcuna partita. Scrivi ".tombola" per iniziare una nuova partita.`);
+          message.channel.send(`${message.author.toString()} non hai attivato alcuna partita. Scrivi ".tombola" per iniziare una nuova partita.`);
         }
         else {
           var dbestratti = `${row.estratti}`;
