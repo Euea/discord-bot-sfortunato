@@ -2,6 +2,19 @@ const Discord = require("discord.js")
 const fs = require("fs");
 const mysql = require('mysql');
 
+var con = mysql.createConnection({
+  host: "process.env.dbhost",
+  user: "process.env.dbuser",
+  password: "process.env.dbpass"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
+
+
 const dbfile = "./database.sqlite";
 const db = require("sqlite");
 db.open(dbfile);
