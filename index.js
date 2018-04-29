@@ -114,7 +114,7 @@ bot.on("message", async message => {
           
           if(arraymancanti.length < 2) {
             message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${estratto}.png\nTutti i numeri sono stati estratti, la partita è conclusa.\nScrivi ".tombola" per iniziare una nuova partita.`);
-            db.run(`DELETE FROM tombola WHERE gestore = "${message.author.toString()}" LIMIT 1`);
+            db.run(`DELETE FROM tombola WHERE gestore = "${message.author.toString()}"`);
           }
           else {
             db.run(`UPDATE tombola SET mancanti = "${upmancanti}", estratti = "${upestratti}" WHERE gestore = "${message.author.toString()}"`);
