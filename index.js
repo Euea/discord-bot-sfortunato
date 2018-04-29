@@ -66,7 +66,7 @@ bot.on("message", async message => {
       db.run(`CREATE TABLE IF NOT EXISTS tombola (gestore TEXT, mancanti TEXT, estratti TEXT)`);
       db.get(`SELECT * FROM tombola WHERE gestore ="${message.author.toString()}" LIMIT 1`).then(row => {
         if(!row) {
-          var resetnumb = `01`;
+          var mancanti = `01`;
           var i;
           for (i = 2; i < 91; i++) { 
             if(i < 10) {
@@ -75,9 +75,9 @@ bot.on("message", async message => {
             else {
               numero = `${i}`;
             }
-            resetnumb = `${resetnumb}, ${numero}`;
+            mancanti = `${mancanti}, ${numero}`;
           }
-          db.run(`INSERT INTO tombola (gestore, numbers) VALUES (?, ?)`, [message.author.toString(), resetnumb]);
+          db.run(`INSERT INTO tombola (gestore, estratti, mancanti) VALUES (?, ?, ?)`, [message.author.toString(), ``, `${mancanti}`]);
           message.channel.send(`${message.author.toString()} ha avviato una nuova partita di tombola.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
         }
         else {
