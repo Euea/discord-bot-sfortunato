@@ -14,7 +14,7 @@ bot.on("message", async message => {
   if(message.author.bot) {
     return;
   }
-  else if((message.channel.type === "dm") {
+  else if(message.channel.type === "dm") {
     return;
   }
   else {
