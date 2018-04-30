@@ -37,6 +37,7 @@ bot.on("message", async message => {
         estratto = `testa`;
       }
       message.channel.send(`${message.author.toString()} lancia una moneta: http://euea.altervista.org/moneta/v1/${estratto}.png`);
+      message.delete(message);
       return;
     }
     
@@ -45,6 +46,7 @@ bot.on("message", async message => {
       bot.user.setActivity(`dadi`);
       var estratto = Math.floor(Math.random() * 6) + 1;
       message.channel.send(`${message.author.toString()} tira un dado: http://euea.altervista.org/dado/v1/${estratto}.png`);
+      message.delete(message);
       return;
     }
     
