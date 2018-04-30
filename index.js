@@ -153,7 +153,7 @@ bot.on("message", async message => {
     else if((chan == `games` || chan == `spam-musica`) && text == `.euea`) {
       exampleEmbed = new Discord.RichEmbed()
         .setColor('#f1c40f')
-        .setAuthor(' ', message.author.avatarURL, '')
+        .setAuthor(':', message.author.avatarURL, '')
         .setDescription(message.author.toString() + ' ha avviato una nuova partita.')
         .setThumbnail('https://euea.altervista.org/lotto/v1/01.png')
         .addField('---', 'Scrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".')
