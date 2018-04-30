@@ -37,6 +37,7 @@ bot.on("message", async message => {
         estratto = `testa`;
       }
       message.channel.send(`${message.author.toString()} lancia una moneta: http://euea.altervista.org/moneta/v1/${estratto}.png`);
+      message.delete(message);
       return;
     }
     
@@ -45,6 +46,7 @@ bot.on("message", async message => {
       bot.user.setActivity(`dadi`);
       var estratto = Math.floor(Math.random() * 6) + 1;
       message.channel.send(`${message.author.toString()} tira un dado: http://euea.altervista.org/dado/v1/${estratto}.png`);
+      message.delete(message);
       return;
     }
     
@@ -53,6 +55,7 @@ bot.on("message", async message => {
       bot.user.setActivity(`roulette`);
       var estratto = Math.floor(Math.random() * 37);
       message.channel.send(`${message.author.toString()} fa un tiro alla roulette: http://euea.altervista.org/roulette/v1/${estratto}.png`);
+      message.delete(message);
       return;
     }
     
@@ -69,6 +72,7 @@ bot.on("message", async message => {
         numero = `${estratto}`;
       }
       message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${numero}.png`);
+      message.delete(message);
       return;
     }
     
@@ -96,6 +100,7 @@ bot.on("message", async message => {
         else {
           message.channel.send(`${message.author.toString()} hai già avviato una partita di tombola.\nNumeri estratti: ${row.estratti}.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
         }
+        message.delete(message);
         return;
       });
     }
@@ -131,6 +136,7 @@ bot.on("message", async message => {
             message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${estratto}.png\nTutti i numeri estratti: ${upestratti}.\nScrivi ".tombola numero" per estrarre un altro numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
           }
         }
+        message.delete(message);
         return;
       });
     }
@@ -139,16 +145,17 @@ bot.on("message", async message => {
     else if((chan == `games` || chan == `spam-musica`) && text == `.tombola fine`) {
       message.channel.send(`${message.author.toString()} ha terminato la partita di tombola. Scrivi ".tombola" per iniziare una nuova partita.`);
       db.run(`DELETE FROM tombola WHERE gestore = "${message.author.toString()}"`);
+      message.delete(message);
       return;
     }
     
-    // TOMBOLA FINE
+    // TEST
     else if((chan == `games` || chan == `spam-musica`) && text == `.euea`) {
       exampleEmbed = new Discord.RichEmbed()
-        .setColor('#0099ff')
+        .setColor('#f1c40f')
+        .setAuthor(message.author.toString(), message.author.avatar_url, 'https://discord.js.org')
         .setTitle('Some title')
         .setURL('https://discord.js.org/')
-        .setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
         .setDescription('Some description here')
         .setThumbnail('https://i.imgur.com/wSTFkRM.png')
         .addField('Regular field title', 'Some value here')
@@ -157,12 +164,12 @@ bot.on("message", async message => {
         .addField('Inline field title3', 'Some value here', true)
         .addField('Inline field title4', 'Some value here', true)
         .setImage('https://i.imgur.com/wSTFkRM.png')
-        .setTimestamp()
-        .setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
+        .setFooter('Istruzioni comandi', 'https://euea.altervista.org/ui/info.png')
+        .setTimestamp();
       message.channel.send(exampleEmbed);
       return;
     }
-    
+
   }
 });
 
