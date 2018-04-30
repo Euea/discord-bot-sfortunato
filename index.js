@@ -53,6 +53,7 @@ bot.on("message", async message => {
       bot.user.setActivity(`roulette`);
       var estratto = Math.floor(Math.random() * 37);
       message.channel.send(`${message.author.toString()} fa un tiro alla roulette: http://euea.altervista.org/roulette/v1/${estratto}.png`);
+      message.delete(message);
       return;
     }
     
@@ -69,6 +70,7 @@ bot.on("message", async message => {
         numero = `${estratto}`;
       }
       message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${numero}.png`);
+      message.delete(message);
       return;
     }
     
@@ -96,6 +98,7 @@ bot.on("message", async message => {
         else {
           message.channel.send(`${message.author.toString()} hai già avviato una partita di tombola.\nNumeri estratti: ${row.estratti}.\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
         }
+        message.delete(message);
         return;
       });
     }
@@ -131,6 +134,7 @@ bot.on("message", async message => {
             message.channel.send(`${message.author.toString()} ha estratto il numero: http://euea.altervista.org/lotto/v1/${estratto}.png\nTutti i numeri estratti: ${upestratti}.\nScrivi ".tombola numero" per estrarre un altro numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".`);
           }
         }
+        message.delete(message);
         return;
       });
     }
@@ -139,6 +143,7 @@ bot.on("message", async message => {
     else if((chan == `games` || chan == `spam-musica`) && text == `.tombola fine`) {
       message.channel.send(`${message.author.toString()} ha terminato la partita di tombola. Scrivi ".tombola" per iniziare una nuova partita.`);
       db.run(`DELETE FROM tombola WHERE gestore = "${message.author.toString()}"`);
+      message.delete(message);
       return;
     }
     
