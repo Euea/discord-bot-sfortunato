@@ -153,13 +153,14 @@ bot.on("message", async message => {
     else if((chan == `games` || chan == `spam-musica`) && text == `.euea`) {
       exampleEmbed = new Discord.RichEmbed()
         .setColor('#f1c40f')
-        .setAuthor(`${message.author.toString()}`, message.author.avatarURL, '')
-        .setTitle('Tombola')
-        .setDescription('Partita avviata.')
+        .setAuthor(message.author.toString(), message.author.avatarURL, '')
+        .setTitle('Tombola' + message.author.toString())
+        .setURL('')
+        .setDescription('Partita avviata.' + message.author.toString())
         .addBlankField()
-        .setThumbnail('https://euea.altervista.org/lotto/01.png')
-        .addField('Numeri estratti: ', 'Some value here')
-        .setFooter('Istruzioni comandi', 'https://euea.altervista.org/ui/info.png')
+        .setThumbnail('https://euea.altervista.org/lotto/v1/01.png')
+        .addField('Numeri estratti: ', 'Some value here' + message.author.toString())
+        .setFooter('Istruzioni comandi' + message.author.toString(), 'https://euea.altervista.org/ui/info.png')
         .setTimestamp();
       message.channel.send(exampleEmbed);
       return;
