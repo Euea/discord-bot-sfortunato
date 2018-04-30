@@ -40,7 +40,8 @@ bot.on("message", async message => {
       postembed = new Discord.RichEmbed()
         .setColor('#'+rcolor)
         .setAuthor('»', 'https://euea.altervista.org/moneta/v1/moneta.png', '')
-        .setDescription(message.author.toString() + ' ha lanciato una moneta...\nhttps://euea.altervista.org/moneta/v1/'+estratto+'.png.')
+        .setDescription(message.author.toString() + ' ha lanciato una moneta...\nEd esce '+estratto+'.')
+        .setImage('https://euea.altervista.org/moneta/v1/'+estratto+'.png')
         .setThumbnail(message.author.avatarURL)
         .setFooter('TESTA O CROCE', '')
         .setTimestamp();
@@ -56,7 +57,8 @@ bot.on("message", async message => {
       postembed = new Discord.RichEmbed()
         .setColor('#'+rcolor)
         .setAuthor('»', 'https://euea.altervista.org/dado/v1/dado.png', '')
-        .setDescription(message.author.toString() + ' ha tirato un dado...\nhttps://euea.altervista.org/dado/v1/'+estratto+'.png')
+        .setDescription(message.author.toString() + ' ha tirato un dado...\nEd esce '+estratto+'.')
+        .setImage('https://euea.altervista.org/dado/v1/'+estratto+'.png')
         .setThumbnail(message.author.avatarURL)
         .setFooter('TIRA IL DADO', '')
         .setTimestamp();
@@ -72,7 +74,8 @@ bot.on("message", async message => {
       postembed = new Discord.RichEmbed()
         .setColor('#'+rcolor)
         .setAuthor('»', 'https://euea.altervista.org/roulette/v1/roulette.png', '')
-        .setDescription(message.author.toString() + ' fa girare la roulette...\nhttps://euea.altervista.org/roulette/v1/'+estratto+'.png')
+        .setDescription(message.author.toString() + ' fa girare la roulette...\nEd esce '+estratto+'.')
+        .setImage('https://euea.altervista.org/roulette/v1/'+estratto+'.png')
         .setThumbnail(message.author.avatarURL)
         .setFooter('ROULETTE', '')
         .setTimestamp();
@@ -95,7 +98,8 @@ bot.on("message", async message => {
       postembed = new Discord.RichEmbed()
         .setColor('#'+rcolor)
         .setAuthor('»', 'https://euea.altervista.org/lotto/v1/lotto.png', '')
-        .setDescription(message.author.toString() + ' estrae un numero...\nhttps://euea.altervista.org/lotto/v1/'+estratto+'.png')
+        .setDescription(message.author.toString() + ' estrae un numero...\nEd esce '+estratto+'.')
+        .setImage('https://euea.altervista.org/lotto/v1/'+estratto+'.png')
         .setThumbnail(message.author.avatarURL)
         .setFooter('LOTTO', '')
         .setTimestamp();
@@ -125,7 +129,7 @@ bot.on("message", async message => {
           db.run('INSERT INTO tombola (gestore, estratti, mancanti) VALUES (?, ?, ?)', [message.author.toString(), estratti, mancanti]);
           postembed = new Discord.RichEmbed()
             .setColor('#'+rcolor)
-        .setAuthor('»', 'https://euea.altervista.org/tombola/v1/tombola.png', '')
+            .setAuthor('»', 'https://euea.altervista.org/tombola/v1/tombola.png', '')
             .setDescription(message.author.toString() + ' ha avviato una nuova partita...\nScrivi ".tombola numero" per estrarre un numero, scrivi ".tombola fine" per chiudere la partita e poterne iniziare una nuova con il comando ".tombola".')
             .setThumbnail(message.author.avatarURL)
             .setFooter('TOMBOLA', '')
@@ -180,8 +184,9 @@ bot.on("message", async message => {
             db.run(`DELETE FROM tombola WHERE gestore = "${message.author.toString()}"`);
             postembed = new Discord.RichEmbed()
               .setColor('#'+rcolor)
-            .setAuthor('»', 'https://euea.altervista.org/tombola/v1/tombola.png', '')
+              .setAuthor('»', 'https://euea.altervista.org/tombola/v1/tombola.png', '')
               .setDescription(message.author.toString() + ' estrae un numero...\nEd esce '+estratto+'. Tutti i numeri sono stati estratti, la partita è conclusa.')
+              .setImage('https://euea.altervista.org/tombola/v1/'+estratto+'.png')
               .setThumbnail(message.author.avatarURL)
               .setFooter('TOMBOLA', '')
               .setTimestamp();
@@ -193,6 +198,7 @@ bot.on("message", async message => {
               .setColor('#'+rcolor)
               .setAuthor('»', 'https://euea.altervista.org/tombola/v1/tombola.png', '')
               .setDescription(message.author.toString() + ' estrae un numero...\nEd esce '+estratto+'. Tutti i numeri estratti: '+upestratti+'.')
+              .setImage('https://euea.altervista.org/tombola/v1/'+estratto+'.png')
               .setThumbnail(message.author.avatarURL)
               .setFooter('TOMBOLA', '')
               .setTimestamp();
@@ -219,16 +225,7 @@ bot.on("message", async message => {
       return;
     }
     
-    // TEST
-    else if((chan == `games` || chan == `spam-musica`) && text == `.euea`) {
-      postembed = new Discord.RichEmbed()
-        .setColor('#'+rcolor)
-        .setAuthor('»', 'https://euea.altervista.org/tombola/v1/tombola.png', '')
-        .setDescription(message.author.toString() + ' ha avviato una nuova partita.\nScrivi .tombola aiuto per info sui comandi disponibili.')
-        .setThumbnail(message.author.avatarURL)
-        .setFooter('TOMBOLA', '')
-        .setTimestamp();
-      message.channel.send(postembed);
+    else  {
       return;
     }
 
