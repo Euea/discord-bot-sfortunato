@@ -14,7 +14,7 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
-  var data = getDate()+`/`getMonth()+`/`getYear()+` (`getHours()+`:`getMinutes()+`:`getSeconds()+`)\n`;
+  var data = getDate()+`/`+getMonth()+`/`+getYear()+` (`+getHours()+`:`+getMinutes()+`:`+getSeconds()+`)\n`;
   if(message.author.bot) {
     return;
   }
