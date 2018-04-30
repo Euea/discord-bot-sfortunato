@@ -26,6 +26,7 @@ bot.on("message", async message => {
     var authorid = message.author.id;
     var colors = ["eeeeee", "ff0000","ff4000","ff8000","ffbf00","ffff00","bfff00","80ff00","00ff40","00ff80","00ffff","00bfff","0080ff","0040ff","4000ff","8000ff","ff00ff","ff0080","777777","000000"];
     var rcolor = colors[Math.floor(Math.random() * 18)];
+
     
     // MONETA - Testa o croce
     if((chan == `games` || chan == `spam-musica`) && text == `.moneta`) {
@@ -153,8 +154,8 @@ bot.on("message", async message => {
     // TEST
     else if((chan == `games` || chan == `spam-musica`) && text == `.euea`) {
       exampleEmbed = new Discord.RichEmbed()
-        .setColor(`#${rcolor}`)
-        .setAuthor('»' + rcolor, message.author.avatarURL, '#')
+        .setColor('#'+Math.floor(Math.random()*16777215).toString(16))
+        .setAuthor('» #'+Math.floor(Math.random()*16777215).toString(16), message.author.avatarURL, '')
         .setDescription(message.author.toString() + ' ha avviato una nuova partita.\nScrivi .tombola aiuto per info sui comandi disponibili.')
         .setThumbnail('https://euea.altervista.org/lotto/v1/01.png')
         .setFooter('TOMBOLA', '')
