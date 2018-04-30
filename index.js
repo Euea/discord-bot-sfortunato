@@ -153,14 +153,13 @@ bot.on("message", async message => {
     // TEST
     else if((chan == `games` || chan == `spam-musica`) && text == `.euea`) {
       exampleEmbed = new Discord.RichEmbed()
-        .setColor('#'+Math.floor(Math.random()*16777215).toString(16))
-        .setAuthor('» #'+Math.floor(Math.random()*16777215).toString(16), message.author.avatarURL, '')
+        .setColor('#'+rcolor)
+        .setAuthor('»', message.author.avatarURL, '')
         .setDescription(message.author.toString() + ' ha avviato una nuova partita.\nScrivi .tombola aiuto per info sui comandi disponibili.')
         .setThumbnail('https://euea.altervista.org/lotto/v1/01.png')
         .setFooter('TOMBOLA', '')
         .setTimestamp();
       message.channel.send(exampleEmbed);
-      message.channel.send(rcolor);
       return;
     }
 
