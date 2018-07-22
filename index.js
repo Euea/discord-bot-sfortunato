@@ -229,10 +229,8 @@ bot.on("message", async message => {
     else if(text.substring(0,6) == `.wiki `) {
       postembed = new Discord.RichEmbed()
         .setColor('#3c95ce')
-        .setAuthor('»', 'https://wiki.erepublik.com/images/8/8a/Logo_wiki.png', '')
-        .setDescription(message.author.toString() + ' clicca qui per info: ' + text.substring(6))
-      // https://wiki.erepublik.com/index.php?search=afkashfsa
-        .setThumbnail(message.author.avatarURL)
+        .setAuthor('»', 'https://www.erepublik.net/images/modules/misc/info.png', '')
+        .setDescription(message.author.toString() + ' clicca qui per info: https://wiki.erepublik.com/index.php?search=' + text.substring(6).replace(" ", "+"))
         .setFooter('EREPUBLIK WIKI', '')
         .setTimestamp();
       message.channel.send(postembed);
